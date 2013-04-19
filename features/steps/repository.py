@@ -8,7 +8,7 @@ def add_file(filepath):
         f.writelines('Dont Care')
     commands.add(ui.ui(), world.repo, filepath)
 
-def commit_files(filenames):
+def commit_files(filenames, myDate=None):
     for f in filenames:
         add_file(f)
     commands.commit(ui.ui(), world.repo, message='dont care', user='Testy McTesterson', addremove=False, logfile=None, date=None)
@@ -25,7 +25,7 @@ def a_repository_with_changesets(step):
     create_repository()
 
     commit_files(['repo/codefile', 'repo/codefiltest'])
-    commit_files(['repo/codefile'])
+    commit_files(['repo/second_codefile'])
 
 @step(u'a repository with changesets to multiple branches')
 def a_repository_with_changesets_to_multiple_branches(step):
@@ -39,3 +39,8 @@ def a_repository_with_changesets_to_multiple_branches(step):
     commit_files(['repo/third_codefile'])
     commit_files(['repo/second_testfile'])
 
+@step(u'Given a repository with changesets before the start date')
+def given_a_repository_with_changesets_before_the_start_date(step):
+    create_repository()
+
+    commit_files(['repo/codefile', 'repo/codefiletest'], '1980-10-02')
