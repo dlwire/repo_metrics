@@ -8,3 +8,6 @@ def on_default(changeset):
 
 def after_date(date):
     return lambda changeset: date < datetime.fromtimestamp(changeset.date()[0])
+
+def by_user(user):
+    return lambda changeset: user == changeset.user()

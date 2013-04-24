@@ -9,7 +9,11 @@ def i_run_the_metrics_tool(step):
 
 @step(u'I run the metrics tool with a start date')
 def i_run_the_metrics_tool_with_a_start_date(step):
-    world.output = check_output(['python', '../src/repo_metrics.py', '1980-10-03'], cwd=world.REPO_DIR).strip()
+    world.output = check_output(['python', '../src/repo_metrics.py', "-afterDate'1980-10-03'"], cwd=world.REPO_DIR).strip()
+
+@step(u'I run the metrics tool with a user name')
+def i_run_the_metrics_tool_with_a_user_name(step):
+    world.output = check_output(['python', '../src/repo_metrics.py', "-user'A User'"], cwd=world.REPO_DIR).strip()
 
 @step(u'I should see output indicating there is no repository')
 def i_should_see_output_indicating_the_repository_is_empty(step):
@@ -21,8 +25,8 @@ def i_should_see_output_indicating_the_repository_is_empty(step):
     expected = 'The repository is empty'
     assert world.output == expected, 'Expected output: "%s"\nActual output: "%s"' % (expected, world.output)
 
-@step(u'I should see output indicating there have been no changes since the start date')
-def i_should_see_output_indicating_there_have_been_no_changes_since_the_start_date(step):
+@step(u'I should see output indicating there have been no changes')
+def i_should_see_output_indicating_there_have_been_no_changes(step):
     expected = 'There are no changesets meeting the criteria'
     assert world.output == expected, 'Expected output: "%s"\nActual output: "%s"' % (expected, world.output)
 

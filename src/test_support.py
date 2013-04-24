@@ -2,19 +2,23 @@ import time
 from mercurial import commands, hg, ui
 
 class Changeset:
-    def __init__(self, filepaths=[], branch='default', epochTime=time.time()):
-        self.filepaths = filepaths
-        self.branchName = branch
-        self.epochTime = epochTime
+    def __init__(self, filepaths=[], branch='default', epochTime=time.time(), user="Don't Care"):
+        self.myFiles = filepaths
+        self.myBranch = branch
+        self.myDate = epochTime
+        self.myUser = user
 
     def files(self):
-        return self.filepaths
+        return self.myFiles
 
     def branch(self):
-        return self.branchName
+        return self.myBranch
 
     def date(self):
-        return (self.epochTime, 1231)
+        return (self.myDate, 1231)
+
+    def user(self):
+        return self.myUser
 
 class Repository:
     def __init__(self, repo):

@@ -12,10 +12,10 @@ class Repository:
             f.writelines("Don't Care")
         commands.add(ui.ui(), self.repo, filepath)
 
-    def commit_files(self, filepaths, myDate=None):
+    def commit_files(self, filepaths, commitDate=None, commitUser="Don't Care"):
         for f in filepaths:
             self.add_file(f)
-        commands.commit(ui.ui(), self.repo, message="Don't Care", user='Testy McTesterson', addremove=False, logfile=None, date=myDate)
+        commands.commit(ui.ui(), self.repo, message="Don't Care", user=commitUser, addremove=False, logfile=None, date=commitDate)
 
     def create_branch(self, branchName):
         commands.branch(ui.ui(), self.repo, branchName)
@@ -50,12 +50,26 @@ def a_repository_with_changesets_to_multiple_branches(step):
 def a_repository_with_changesets_before_the_start_date(step):
     create_repository()
 
-    world.repo.commit_files(['repo/codefile', 'repo/codefiletest'], '1980-10-02')
+    world.repo.commit_files(['repo/codefile', 'repo/codefiletest'], commitDate='1980-10-02')
 
 @step(u'a repository with changesets before and after the start date')
 def a_repository_with_changesets_before_and_after_the_start_date(step):
     create_repository()
 
-    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], '1980-10-02')
+    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitDate='1980-10-02')
     world.repo.commit_files(['repo/testfile'])
     world.repo.commit_files(['repo/codefile2'])
+
+@step(u'a repository with no changesets commited by the user')
+def a_repository_with_no_changesets_commited_by_the_user(step):
+    create_repository()
+    
+    world.repo.commit_files(['repo/codefile'], commitUser='Another User')
+
+@step(u'a repository with changesets committed by a user')
+def a_repository_with_changesets_committed_by_a_user(step):
+    create_repository()
+
+    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
+    world.repo.commit_files(['repo/testfile'], commitUser='A User')
+    world.repo.commit_files(['repo/codefile2'], commitUser='A User')
