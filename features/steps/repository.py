@@ -73,3 +73,11 @@ def a_repository_with_changesets_committed_by_a_user(step):
     world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
     world.repo.commit_files(['repo/testfile'], commitUser='A User')
     world.repo.commit_files(['repo/codefile2'], commitUser='A User')
+
+@step(u'Given a repository with changesets committed by the users')
+def given_a_repository_with_changesets_committed_by_the_users(step):
+    create_repository()
+
+    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
+    world.repo.commit_files(['repo/testfile'], commitUser='A User')
+    world.repo.commit_files(['repo/codefile2'], commitUser='B User')

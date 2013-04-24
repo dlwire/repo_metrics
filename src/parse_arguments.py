@@ -6,9 +6,9 @@ def parse_arguments(arguments):
         return []
 
     filters = []
-    if "-afterDate'" in arguments[1]:
+    if '-afterDate' in arguments[1]:
         filters.append(after_date(parse_date(arguments[1])))
-    else:   
+    else:
         filters.append(by_user(parse_user(arguments[1])))
 
     return filters
@@ -20,4 +20,5 @@ def parse_date(dateArgument):
     return datetime(int(year), int(month), int(day))
 
 def parse_user(userArgument):
-    return userArgument.strip("-user").strip("'")
+    return [token.strip() for token in userArgument.strip("-user").strip("'").split(',')]
+
