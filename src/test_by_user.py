@@ -8,3 +8,9 @@ class TestByUser(unittest.TestCase):
 
     def test_matching_user_returns_true(self):
         self.assertTrue(by_user(['A User'])(Changeset(user='A User')))
+
+    def test_case_insensitive(self):
+        self.assertTrue(by_user(['A USER'])(Changeset(user='A User')))
+
+    def test_partial_matches(self):
+        self.assertTrue(by_user(['user'])(Changeset(user='A User')))
