@@ -10,7 +10,6 @@ def parse_arguments(arguments):
     p.add_argument('--afterDate', type=parse_date, nargs='?')
     p.add_argument('--users', type=lambda x: x, nargs='*')
     p.add_argument('args', nargs=argparse.REMAINDER)
-    print "Found arguments: " + str(arguments)
     args = p.parse_args(arguments[1:])
 
     filters = []
@@ -22,7 +21,5 @@ def parse_arguments(arguments):
     return filters
 
 def parse_date(date):
-    print "Date found: " + str(date)
     year, month, day = date.split('-')
-
     return datetime(int(year), int(month), int(day))
