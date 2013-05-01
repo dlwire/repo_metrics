@@ -35,4 +35,12 @@ class TestParseArguments(unittest.TestCase):
         self.assertTrue(filters[0](Changeset(user='A User')))
         self.assertTrue(filters[0](Changeset(user='B User')))
 
-        
+    def test_handles_multiple_arguments(self):
+        filters = parse_arguments(['script_name.py', "-users'A User'", "-afterDate'1980-10-2'"])
+
+        self.assertEquals(2, len(filters))
+        self.assertFalse(filters[0](Changeset(user='Another User')))
+        self.assertTrue(filters[0](Changeset(user='A User')))
+        self.assertFalse(filters[1](Changeset(epochTime=self.OCT_2_1980_EPOCH)))
+        self.assertTrue(filters[1](Changeset(epochTime=self.OCT_3_1980_EPOCH)))
+

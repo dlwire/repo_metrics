@@ -7,17 +7,21 @@ from subprocess import check_output
 def i_run_the_metrics_tool(step):
     world.output = check_output(['python', '../src/repo_metrics.py'], cwd=world.REPO_DIR).strip()
 
-@step(u'I run the metrics tool with a start date')
+@step(u'I run the metrics tool with a start date$')
 def i_run_the_metrics_tool_with_a_start_date(step):
     world.output = check_output(['python', '../src/repo_metrics.py', "-afterDate'1980-10-03'"], cwd=world.REPO_DIR).strip()
 
-@step(u'I run the metrics tool with a user name')
+@step(u'I run the metrics tool with a user name$')
 def i_run_the_metrics_tool_with_a_user_name(step):
     world.output = check_output(['python', '../src/repo_metrics.py', "-user'A User'"], cwd=world.REPO_DIR).strip()
 
-@step(u'I run the metrics tool with multiple user names')
+@step(u'I run the metrics tool with multiple user names$')
 def i_run_the_metrics_tool_with_multiple_user_names(step):
     world.output = check_output(['python', '../src/repo_metrics.py', "-users'A User, B User'"], cwd=world.REPO_DIR).strip()
+
+@step(u'I run the metrics tool with a user name and start date$')
+def i_run_the_metrics_tool_with_multiple_user_names(step):
+    world.output = check_output(['python', '../src/repo_metrics.py', "-users'A User'", "-afterDate'1980-10-03'"], cwd=world.REPO_DIR).strip()
 
 @step(u'I should see output indicating there is no repository')
 def i_should_see_output_indicating_the_repository_is_empty(step):

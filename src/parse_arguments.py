@@ -6,10 +6,11 @@ def parse_arguments(arguments):
         return []
 
     filters = []
-    if '-afterDate' in arguments[1]:
-        filters.append(after_date(parse_date(arguments[1])))
-    else:
-        filters.append(by_user(parse_user(arguments[1])))
+    for argument in arguments[1:]:
+        if '-afterDate' in argument:
+            filters.append(after_date(parse_date(argument)))
+        else:
+            filters.append(by_user(parse_user(argument)))
 
     return filters
 

@@ -66,13 +66,22 @@ def a_repository_with_no_changesets_commited_by_the_user(step):
     
     world.repo.commit_files(['repo/codefile'], commitUser='Another User')
 
-@step(u'a repository with changesets committed by a user')
+@step(u'a repository with changesets committed by a user$')
 def a_repository_with_changesets_committed_by_a_user(step):
     create_repository()
 
     world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
-    world.repo.commit_files(['repo/testfile'], commitUser='A User')
-    world.repo.commit_files(['repo/codefile2'], commitUser='A User')
+    world.repo.commit_files(['repo/testfile2'], commitUser='A User')
+    world.repo.commit_files(['repo/codefile3'], commitUser='A User')
+
+@step(u'a repository with changesets committed by a user before and after a date$')
+def a_repository_with_changesets_committed_by_a_user(step):
+    create_repository()
+
+    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
+    world.repo.commit_files(['repo/codefile2'], commitUser='A User', commitDate='1980-10-02')
+    world.repo.commit_files(['repo/testfile2'], commitUser='A User')
+    world.repo.commit_files(['repo/codefile3'], commitUser='A User')
 
 @step(u'Given a repository with changesets committed by the users')
 def given_a_repository_with_changesets_committed_by_the_users(step):
