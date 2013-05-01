@@ -34,6 +34,14 @@ def a_repository_with_changesets(step):
     world.repo.commit_files(['repo/codefile', 'repo/codefiltest'])
     world.repo.commit_files(['repo/second_codefile'])
 
+@step(u'a repository with changesets with extensions$')
+def a_repository_with_changesets_with_extensions(step):
+    create_repository()
+
+    world.repo.commit_files(['repo/codefile.py'])
+    world.repo.commit_files(['repo/codefile.cpp', 'repo/codefiltest'])
+    world.repo.commit_files(['repo/second_codefile.h', 'repo/second_codefile.cpp'])
+    
 @step(u'a repository with changesets to multiple branches')
 def a_repository_with_changesets_to_multiple_branches(step):
     create_repository()

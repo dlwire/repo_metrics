@@ -23,6 +23,10 @@ def i_run_the_metrics_tool_with_multiple_user_names(step):
 def i_run_the_metrics_tool_with_multiple_user_names(step):
     world.output = check_output(['python', '../src/repo_metrics.py', '--users', 'A User', '--afterDate', '1980-10-03'], cwd=world.REPO_DIR).strip()
 
+@step(u'When I run the metrics tool with specified extensions')
+def when_i_run_the_metrics_tool_with_specified_extensions(step):
+    world.output = check_output(['python', '../src/repo_metrics.py', '--extensions', 'cpp'], cwd=world.REPO_DIR).strip()
+
 @step(u'I should see output indicating there is no repository')
 def i_should_see_output_indicating_the_repository_is_empty(step):
     expected = 'There is no repository at %s' % os.getcwd() + '/repo'
@@ -42,5 +46,3 @@ def i_should_see_output_indicating_there_have_been_no_changes(step):
 def i_should_see_output_indicating_the_test_commit_percentage_of_the_repository(step):
     expected = '%d percent of commits have tests' % 50
     assert world.output == expected, 'Expected output: "%s"\nActual output: "%s"' % (expected, world.output)
-
-

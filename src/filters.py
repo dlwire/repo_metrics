@@ -15,3 +15,6 @@ def by_user_fn(users, changeset):
     
 def by_user(users):
     return lambda changeset: by_user_fn(users, changeset)
+
+def by_extension(exts):
+    return lambda changeset: any([file.endswith(ext) for ext in exts for file in changeset.files()])
