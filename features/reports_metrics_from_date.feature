@@ -11,6 +11,9 @@ Feature: The test metrics should be available since a starting date
 
         Then I should see the following output
             | output lines                                 |
+            | Filtering by...                              |
+            |     After Date: 1980-10-02                   |
+            |                                              |
             | There are no changesets meeting the criteria |
 
     Scenario: It should report the metrics since the start date
@@ -26,4 +29,7 @@ Feature: The test metrics should be available since a starting date
 
         Then I should see the following output
             | output lines                     |
+            | Filtering by...                  |
+            |     After Date: 1980-10-02       |
+            |                                  |
             | 50 percent of commits have tests |

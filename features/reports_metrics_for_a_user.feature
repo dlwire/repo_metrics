@@ -14,6 +14,9 @@ Feature: The test metrics should be available for a specific user
 
         Then I should see the following output
             | output lines                                 |
+            | Filtering by...                              |
+            |     Users: A User                            |
+            |                                              |
             | There are no changesets meeting the criteria |
 
     Scenario: It should report the metrics for the user in question
@@ -29,5 +32,8 @@ Feature: The test metrics should be available for a specific user
 
         Then I should see the following output
             | output lines                     |
+            | Filtering by...                  |
+            |     Users: A User                |
+            |                                  |
             | 50 percent of commits have tests |
 

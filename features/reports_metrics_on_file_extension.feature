@@ -13,4 +13,7 @@ Feature: The test metrics should be available for commits touching specified fil
 
         Then I should see the following output
             | output lines                     |
+            | Filtering by...                  |
+            |     Extensions: cpp              |
+            |                                  |
             | 50 percent of commits have tests |

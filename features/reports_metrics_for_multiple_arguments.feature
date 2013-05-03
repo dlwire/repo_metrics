@@ -18,4 +18,8 @@ Feature: The test metrics should be available for a combination of arguments
 
         Then I should see the following output
             | output lines                     |
+            | Filtering by...                  |
+            |     After Date: 1980-10-03       |
+            |     Users: A User                |
+            |                                  |
             | 50 percent of commits have tests |
