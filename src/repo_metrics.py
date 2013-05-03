@@ -19,30 +19,37 @@ def get_commit_percent(repo, numerator_filters, denominator_filters):
 
     return (percent, numerator_count, denominator_count)
 
+def print_tdded(base):
+    tdded = filter(is_tdded, base)
+
+    percentage = float(len(tdded)) / len(base) * 100
+
+    print('%d percent of commits have tests' % percentage)
+
 def print_metrics(repo):
+    if not repo.is_valid():
+        print('There is no repository at %s' % os.getcwd())
+        return
+        
     if repo.is_empty():
         print('The repository is empty')
         return
 
     additional_filters = parse_arguments(sys.argv)
 
-    numerator_filters = additional_filters + [on_default, is_tdded]
-    denominator_filters = additional_filters + [on_default]
+    base_filters = additional_filters + [on_default]
+    base = filter_changesets2(repo.changesets(), base_filters)
 
-    (percentage, numerator, denominator) = get_commit_percent(repo, numerator_filters, denominator_filters)
-
-    if denominator == 0:
+    if len(base) == 0:
         print('There are no changesets meeting the criteria')
         return
 
-    print('%d percent of commits have tests' % percentage)
+    print('Total Commits: %d' % len(base))
+
+    print_tdded(base)
 
 def generate_and_display_metrics():
     repo = Fickle(os.getcwd())
-    if not repo.is_valid():
-        print('There is no repository at %s' % os.getcwd())
-        return
-    
     print_metrics(repo)
     
 if __name__ == '__main__':

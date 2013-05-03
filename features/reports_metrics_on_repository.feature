@@ -19,6 +19,7 @@ Feature: The test metrics should be available on the entire repository
         When I run the metrics tool
         Then I should see the following output
             | output lines                     |
+            | Total Commits: 2                 |
             | 50 percent of commits have tests |
 
     Scenario: It should report metrics only for the default branch
@@ -30,4 +31,5 @@ Feature: The test metrics should be available on the entire repository
         When I run the metrics tool
         Then I should see the following output
             | output lines                     |
+            | Total Commits: 2                 |
             | 50 percent of commits have tests |

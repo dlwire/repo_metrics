@@ -35,5 +35,6 @@ Feature: The test metrics should be available for a specific user
             | Filtering by...                  |
             |     Users: A User                |
             |                                  |
+            | Total Commits: 2                 |
             | 50 percent of commits have tests |
 

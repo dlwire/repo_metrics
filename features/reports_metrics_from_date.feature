@@ -32,4 +32,5 @@ Feature: The test metrics should be available since a starting date
             | Filtering by...                  |
             |     After Date: 1980-10-02       |
             |                                  |
+            | Total Commits: 2                 |
             | 50 percent of commits have tests |

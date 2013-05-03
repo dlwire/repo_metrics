@@ -22,4 +22,5 @@ Feature: The test metrics should be available for a combination of arguments
             |     After Date: 1980-10-03       |
             |     Users: A User                |
             |                                  |
+            | Total Commits: 2                 |
             | 50 percent of commits have tests |
