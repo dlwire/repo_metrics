@@ -17,3 +17,14 @@ class TestByExtensions(unittest.TestCase):
 
     def test_matches_with_any_of_multiple_extensions(self):
         self.assertTrue(ByExtensions(['py', 'cpp'])(Changeset(['codefile.cpp'])))
+
+    def test_str_returns_description_of_filter_for_one_extension(self):
+        extensions_filter = ByExtensions(['cpp'])
+
+        self.assertEquals('Extensions: cpp', extensions_filter.__str__())
+
+    def test_str_returns_description_of_filter_for_multiple_extensions(self):
+        extensions_filter = ByExtensions(['cpp', 'h'])
+
+        self.assertEquals('Extensions: cpp, h', extensions_filter.__str__())
+

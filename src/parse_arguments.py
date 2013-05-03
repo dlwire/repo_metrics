@@ -15,22 +15,17 @@ def parse_arguments(arguments):
 
     filters = []
 
-    filteringBy = ['Filtering by...']
     if args.afterDate:
-        filteringBy.append('    After Date: ' + args.afterDate.isoformat().split('T')[0])
-        filters.append(AfterDate(args.afterDate))
+        after_date = AfterDate(args.afterDate)
+        filters.append(after_date)
 
     if args.users:
-        filteringBy.append('    Users: ' + ', '.join(args.users))
-        filters.append(ByUsers(args.users))
+        by_users = ByUsers(args.users)
+        filters.append(by_users)
 
     if args.extensions:
-        filteringBy.append('    Extensions: ' + ', '.join(args.extensions))
-        filters.append(ByExtensions(args.extensions))
-
-    if len(filteringBy) > 1:
-        print('\n'.join(filteringBy))
-        print
+        by_extensions = ByExtensions(args.extensions)
+        filters.append(by_extensions)
 
     return filters
 

@@ -25,3 +25,8 @@ class TestAfterDate(unittest.TestCase):
         after_date_filter = AfterDate(self.OCT_3_1980_DATE) 
         
         self.assertFalse(after_date_filter(Changeset(epochTime=self.OCT_3_1980_EPOCH)))
+
+    def test_filter_str_method_returns_description(self):
+        after_date_filter = AfterDate(self.OCT_3_1980_DATE)
+
+        self.assertEquals('After Date: 1980-10-03', after_date_filter.__str__())

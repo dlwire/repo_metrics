@@ -27,6 +27,12 @@ def print_metrics(repo):
 
     additional_filters = parse_arguments(sys.argv)
 
+    if len(additional_filters) > 0:
+        print('Filtering by...')
+        for f in additional_filters:
+            print(f)
+        print
+
     base_filters = additional_filters + [OnBranch('default')]
     base = repo.filter_changesets(base_filters)
 

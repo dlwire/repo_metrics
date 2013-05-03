@@ -20,6 +20,3 @@ class TestIsTdded(unittest.TestCase):
 
     def test_code_and_test_testedFilter(self):
         self.assertTrue(self.testedFilter(Changeset(filepaths=['filecode', 'testcode'])))
-
-    def test_filter_class(self):
-        self.assertTrue(self.testedFilter(Changeset(filepaths=['testcode'])))

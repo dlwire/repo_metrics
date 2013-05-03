@@ -17,3 +17,13 @@ class TestByUsers(unittest.TestCase):
 
     def test_any_matching_user_passes(self):
         self.assertTrue(ByUsers(['A User', 'B User'])(Changeset(user='B User')))
+
+    def test_str_returns_description_of_filter_for_one_user(self):
+        users_filter = ByUsers(['A User'])
+
+        self.assertEquals('Users: A User', users_filter.__str__())
+
+    def test_str_returns_description_of_filter_for_multiple_users(self):
+        users_filter = ByUsers(['A User', 'B User'])
+
+        self.assertEquals('Users: A User, B User', users_filter.__str__())
