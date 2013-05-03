@@ -44,8 +44,6 @@ def a_repository_with_changesets(step):
         user = 'Default User'
         if 'user' in changeset_dict.keys():
             user = changeset_dict['user'].strip()
-            with open('user.txt', 'w') as f:
-                f.writelines(user)
             
         world.repo.commit_files(files, commitDate=date, commitUser=user)
 
