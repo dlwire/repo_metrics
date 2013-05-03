@@ -5,26 +5,16 @@ from filters import after_date, is_tdded, on_default
 from parse_arguments import parse_arguments
 from fickle import Fickle, filter_changesets2
 
-def len_generator(generator):
-    return sum(1 for _ in generator)
+def get_count_and_percentage(base, my_filter):
+    base_count = len(base)
+    if base_count == 0:
+        return 0, 0
 
-def get_commit_percent(repo, numerator_filters, denominator_filters):
-    changesets = filter_changesets2(repo.changesets(), denominator_filters)
-    denominator_count = len_generator(changesets)
-    numerator_count = len_generator(filter_changesets2(changesets, numerator_filters))
-
-    percent = 0
-    if denominator_count != 0:
-        percent = float(numerator_count) / denominator_count * 100
-
-    return (percent, numerator_count, denominator_count)
+    filtered_count = len(filter(my_filter, base))
+    return filtered_count, float(filtered_count) / base_count * 100
 
 def print_tdded(base):
-    tdded = filter(is_tdded, base)
-
-    percentage = float(len(tdded)) / len(base) * 100
-
-    print('Tested Commits: %d - %d percent' % (len(tdded), percentage))
+    print('Tested Commits: %d - %d percent' % get_count_and_percentage(base, is_tdded))
 
 def print_metrics(repo):
     if not repo.is_valid():
@@ -38,7 +28,7 @@ def print_metrics(repo):
     additional_filters = parse_arguments(sys.argv)
 
     base_filters = additional_filters + [on_default]
-    base = filter_changesets2(repo.changesets(), base_filters)
+    base = repo.filter_changesets(base_filters)
 
     if len(base) == 0:
         print('There are no changesets meeting the criteria')
