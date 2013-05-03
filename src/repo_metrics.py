@@ -24,7 +24,7 @@ def print_tdded(base):
 
     percentage = float(len(tdded)) / len(base) * 100
 
-    print('%d percent of commits have tests' % percentage)
+    print('Tested Commits: %d - %d percent' % (len(tdded), percentage))
 
 def print_metrics(repo):
     if not repo.is_valid():
@@ -45,7 +45,6 @@ def print_metrics(repo):
         return
 
     print('Total Commits: %d' % len(base))
-
     print_tdded(base)
 
 def generate_and_display_metrics():

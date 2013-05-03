@@ -31,10 +31,10 @@ Feature: The test metrics should be available for a specific user
             | --users | A User    |
 
         Then I should see the following output
-            | output lines                     |
-            | Filtering by...                  |
-            |     Users: A User                |
-            |                                  |
-            | Total Commits: 2                 |
-            | 50 percent of commits have tests |
+            | output lines                   |
+            | Filtering by...                |
+            |     Users: A User              |
+            |                                |
+            | Total Commits: 2               |
+            | Tested Commits: 1 - 50 percent |
 

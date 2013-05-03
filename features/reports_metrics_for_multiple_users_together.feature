@@ -28,9 +28,9 @@ Feature: The test metrics should be available for multiple users
             | --users | A User, B User |
 
         Then I should see the following output
-            | output lines                     |
-            | Filtering by...                  |
-            |     Users: A User, B User        |
-            |                                  |
-            | Total Commits: 2                 |
-            | 50 percent of commits have tests |
+            | output lines                   |
+            | Filtering by...                |
+            |     Users: A User, B User      |
+            |                                |
+            | Total Commits: 2               |
+            | Tested Commits: 1 - 50 percent |

@@ -1,7 +1,4 @@
 Feature: The test metrics should be available for a combination of arguments
-    In order to see test recent testing efforts
-    As a developer
-    I want to see the percentage of my recent pushes containing tests
 
     Scenario: It should report the metrics for the user in question after a given date
         Given a repository with changesets
@@ -17,10 +14,10 @@ Feature: The test metrics should be available for a combination of arguments
             | --afterDate | 1980-10-03 | 
 
         Then I should see the following output
-            | output lines                     |
-            | Filtering by...                  |
-            |     After Date: 1980-10-03       |
-            |     Users: A User                |
-            |                                  |
-            | Total Commits: 2                 |
-            | 50 percent of commits have tests |
+            | output lines                   |
+            | Filtering by...                |
+            |     After Date: 1980-10-03     |
+            |     Users: A User              |
+            |                                |
+            | Total Commits: 2               |
+            | Tested Commits: 1 - 50 percent |

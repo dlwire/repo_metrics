@@ -18,9 +18,9 @@ Feature: The test metrics should be available on the entire repository
             | codefile2           |
         When I run the metrics tool
         Then I should see the following output
-            | output lines                     |
-            | Total Commits: 2                 |
-            | 50 percent of commits have tests |
+            | output lines                   |
+            | Total Commits: 2               |
+            | Tested Commits: 1 - 50 percent |
 
     Scenario: It should report metrics only for the default branch
         Given a repository with changesets
@@ -30,6 +30,6 @@ Feature: The test metrics should be available on the entire repository
             | codefile3           | Don't Care |
         When I run the metrics tool
         Then I should see the following output
-            | output lines                     |
-            | Total Commits: 2                 |
-            | 50 percent of commits have tests |
+            | output lines                   |
+            | Total Commits: 2               |
+            | Tested Commits: 1 - 50 percent |

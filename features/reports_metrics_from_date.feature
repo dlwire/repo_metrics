@@ -28,9 +28,9 @@ Feature: The test metrics should be available since a starting date
             | --afterDate | 1980-10-02 |
 
         Then I should see the following output
-            | output lines                     |
-            | Filtering by...                  |
-            |     After Date: 1980-10-02       |
-            |                                  |
-            | Total Commits: 2                 |
-            | 50 percent of commits have tests |
+            | output lines                   |
+            | Filtering by...                |
+            |     After Date: 1980-10-02     |
+            |                                |
+            | Total Commits: 2               |
+            | Tested Commits: 1 - 50 percent |
