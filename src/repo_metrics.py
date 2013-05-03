@@ -1,7 +1,7 @@
 import os
 import sys
 from mercurial import hg, ui
-from filters import after_date, is_tdded, on_default
+from filters import IsTdded, OnBranch
 from parse_arguments import parse_arguments
 from fickle import Fickle, filter_changesets2
 
@@ -14,7 +14,7 @@ def get_count_and_percentage(base, my_filter):
     return filtered_count, float(filtered_count) / base_count * 100
 
 def print_tdded(base):
-    print('Tested Commits: %d - %d percent' % get_count_and_percentage(base, is_tdded))
+    print('Tested Commits: %d - %d percent' % get_count_and_percentage(base, IsTdded()))
 
 def print_metrics(repo):
     if not repo.is_valid():
@@ -27,7 +27,7 @@ def print_metrics(repo):
 
     additional_filters = parse_arguments(sys.argv)
 
-    base_filters = additional_filters + [on_default]
+    base_filters = additional_filters + [OnBranch('default')]
     base = repo.filter_changesets(base_filters)
 
     if len(base) == 0:

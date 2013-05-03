@@ -1,7 +1,6 @@
 import unittest
 from test_support import Changeset
 from datetime import datetime
-from filters import after_date
 from parse_arguments import parse_arguments
 
 class TestParseArguments(unittest.TestCase):
@@ -45,7 +44,7 @@ class TestParseArguments(unittest.TestCase):
         self.assertTrue(filters[1](Changeset(user='A User')))
 
     def test_file_extension_argument_returns_a_filter(self):
-        filters = parse_arguments(['script_name.py', '--extensions', '.cpp'])
+        filters = parse_arguments(['script_name.py', '--extensions', 'cpp'])
 
         self.assertEquals(1, len(filters))
         self.assertFalse(filters[0](Changeset(filepaths=['bob.txt'])))

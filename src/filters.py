@@ -1,20 +1,36 @@
 from datetime import datetime
 
-def is_tdded(changeset):
-    return any(['test' in filename.lower() for filename in changeset.files()])
-    
-def on_default(changeset):
-    return 'default' == changeset.branch()
+class IsTdded:
+    def __init__(self):
+        pass
+        
+    def __call__(self, changeset):
+        return any(['test' in filename.lower() for filename in changeset.files()])
 
-def after_date(date):
-    return lambda changeset: date < datetime.fromtimestamp(changeset.date()[0])
+class OnBranch:
+    def __init__(self, branch):
+        self.branch = branch
 
-def by_user_fn(users, changeset):
-    matching = [user.lower() in changeset.user().lower() for user in users]
-    return any(matching)
-    
-def by_user(users):
-    return lambda changeset: by_user_fn(users, changeset)
+    def __call__(self, changeset):
+        return self.branch == changeset.branch()
 
-def by_extension(exts):
-    return lambda changeset: any([file.endswith(ext) for ext in exts for file in changeset.files()])
+class AfterDate:
+    def __init__(self, date):
+        self.date = date
+
+    def __call__(self, changeset):
+        return self.date < datetime.fromtimestamp(changeset.date()[0])
+
+class ByUsers:
+    def __init__(self, users):
+        self.users = users
+
+    def __call__(self, changeset):
+        return any([user.lower() in changeset.user().lower() for user in self.users])
+
+class ByExtensions:
+    def __init__(self, extensions):
+        self.extensions = extensions
+
+    def __call__(self, changeset):
+        return any([file.lower().endswith('.' + extension) for extension in self.extensions for file in changeset.files()])

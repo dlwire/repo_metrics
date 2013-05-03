@@ -1,5 +1,5 @@
 from datetime import datetime
-from filters import after_date, by_user, by_extension
+from filters import AfterDate, ByUsers, ByExtensions
 import argparse
 
 def parse_arguments(arguments):
@@ -18,15 +18,15 @@ def parse_arguments(arguments):
     filteringBy = ['Filtering by...']
     if args.afterDate:
         filteringBy.append('    After Date: ' + args.afterDate.isoformat().split('T')[0])
-        filters.append(after_date(args.afterDate))
+        filters.append(AfterDate(args.afterDate))
 
     if args.users:
         filteringBy.append('    Users: ' + ', '.join(args.users))
-        filters.append(by_user(args.users))
+        filters.append(ByUsers(args.users))
 
     if args.extensions:
         filteringBy.append('    Extensions: ' + ', '.join(args.extensions))
-        filters.append(by_extension(args.extensions))
+        filters.append(ByExtensions(args.extensions))
 
     if len(filteringBy) > 1:
         print('\n'.join(filteringBy))

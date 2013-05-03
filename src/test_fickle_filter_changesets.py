@@ -21,16 +21,16 @@ class TestFilterChangesets(unittest.TestCase):
 
     def test_one_filter_returns_changsets_passing_that_filter(self):
         changesetsOnDefault = self.changesets[0:2] + self.changesets[3:4]
-        self.assertEquals(changesetsOnDefault, self.fickle.filter_changesets([on_default]))
+        self.assertEquals(changesetsOnDefault, self.fickle.filter_changesets([OnBranch('default')]))
 
     def test_two_filters_returns_changesets_passing_both(self):
         changesetsOnDefaultAndTDDed = self.changesets[:2]
-        self.assertEquals(changesetsOnDefaultAndTDDed, self.fickle.filter_changesets([is_tdded, on_default]))
+        self.assertEquals(changesetsOnDefaultAndTDDed, self.fickle.filter_changesets([IsTdded(), OnBranch('default')]))
 
     def test_three_filters_returns_changets_passing_all(self):
         changesetsOnDefaultAndTDDedSinceOct31980 = self.changesets[:1]
 
-        filters = [is_tdded, on_default, after_date(OCT_3_1980_DATE)]
+        filters = [IsTdded(), OnBranch('default'), AfterDate(OCT_3_1980_DATE)]
         self.assertEquals(changesetsOnDefaultAndTDDedSinceOct31980, self.fickle.filter_changesets(filters))
 
 if __name__ == '__main__':

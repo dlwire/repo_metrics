@@ -4,7 +4,6 @@ import unittest
 from mercurial import hg, ui
 from test_support import Repository
 from fickle import Fickle
-from filters import is_tdded, on_default
 
 def len_generator(my_generator):
     return sum(1 for _ in my_generator)
