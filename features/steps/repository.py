@@ -31,70 +31,21 @@ def a_repository_with_0_changesets(step):
 def a_repository_with_changesets(step):
     create_repository()
 
-    world.repo.commit_files(['repo/codefile', 'repo/codefiltest'])
-    world.repo.commit_files(['repo/second_codefile'])
+    for changeset_dict in step.hashes:
+        files = [world.REPO_DIR + '/' + filename.strip() for filename in changeset_dict['files'].split(',')]
 
-@step(u'a repository with changesets with extensions$')
-def a_repository_with_changesets_with_extensions(step):
-    create_repository()
+        if 'branch' in changeset_dict.keys():
+            world.repo.create_branch(changeset_dict['branch'])
 
-    world.repo.commit_files(['repo/codefile.py'])
-    world.repo.commit_files(['repo/codefile.cpp', 'repo/codefiltest'])
-    world.repo.commit_files(['repo/second_codefile.h', 'repo/second_codefile.cpp'])
-    
-@step(u'a repository with changesets to multiple branches')
-def a_repository_with_changesets_to_multiple_branches(step):
-    create_repository()
+        date = None
+        if 'date' in changeset_dict.keys():
+            date = changeset_dict['date'].strip()
 
-    world.repo.commit_files(['repo/codefile', 'repo/codefiltest'])
-    world.repo.commit_files(['repo/second_codefile'])
+        user = 'Default User'
+        if 'user' in changeset_dict.keys():
+            user = changeset_dict['user'].strip()
+            with open('user.txt', 'w') as f:
+                f.writelines(user)
+            
+        world.repo.commit_files(files, commitDate=date, commitUser=user)
 
-    world.repo.create_branch("Don't Care")
-
-    world.repo.commit_files(['repo/third_codefile'])
-    world.repo.commit_files(['repo/second_testfile'])
-
-@step(u'a repository with changesets before the start date')
-def a_repository_with_changesets_before_the_start_date(step):
-    create_repository()
-
-    world.repo.commit_files(['repo/codefile', 'repo/codefiletest'], commitDate='1980-10-02')
-
-@step(u'a repository with changesets before and after the start date')
-def a_repository_with_changesets_before_and_after_the_start_date(step):
-    create_repository()
-
-    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitDate='1980-10-02')
-    world.repo.commit_files(['repo/testfile'])
-    world.repo.commit_files(['repo/codefile2'])
-
-@step(u'a repository with no changesets commited by the user')
-def a_repository_with_no_changesets_commited_by_the_user(step):
-    create_repository()
-    
-    world.repo.commit_files(['repo/codefile'], commitUser='Another User')
-
-@step(u'a repository with changesets committed by a user$')
-def a_repository_with_changesets_committed_by_a_user(step):
-    create_repository()
-
-    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
-    world.repo.commit_files(['repo/testfile2'], commitUser='A User')
-    world.repo.commit_files(['repo/codefile3'], commitUser='A User')
-
-@step(u'a repository with changesets committed by a user before and after a date$')
-def a_repository_with_changesets_committed_by_a_user(step):
-    create_repository()
-
-    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
-    world.repo.commit_files(['repo/codefile2'], commitUser='A User', commitDate='1980-10-02')
-    world.repo.commit_files(['repo/testfile2'], commitUser='A User')
-    world.repo.commit_files(['repo/codefile3'], commitUser='A User')
-
-@step(u'Given a repository with changesets committed by the users')
-def given_a_repository_with_changesets_committed_by_the_users(step):
-    create_repository()
-
-    world.repo.commit_files(['repo/codefile1', 'repo/codefiletest'], commitUser='Another User')
-    world.repo.commit_files(['repo/testfile'], commitUser='A User')
-    world.repo.commit_files(['repo/codefile2'], commitUser='B User')
