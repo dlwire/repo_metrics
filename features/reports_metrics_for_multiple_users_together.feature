@@ -13,6 +13,7 @@ Feature: The test metrics should be available for multiple users
             | output lines                                 |
             | Filtering by...                              |
             |     Users: A User, B User                    |
+            |     On Branch: default                       |
             |                                              |
             | There are no changesets meeting the criteria |
 
@@ -31,6 +32,7 @@ Feature: The test metrics should be available for multiple users
             | output lines                   |
             | Filtering by...                |
             |     Users: A User, B User      |
+            |     On Branch: default         |
             |                                |
             | Total Commits: 2               |
             | Tested Commits: 1 - 50 percent |

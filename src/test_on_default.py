@@ -16,5 +16,8 @@ class TestOnDefault(unittest.TestCase):
     def test_filter_branch_other_than_default(self):
         self.assertTrue(self.other_filter(Changeset(branch='other')))
 
+    def test_print_output(self):
+        self.assertEquals('On Branch: default', self.default_filter.__str__())
+
 if __name__ == '__main__':
     unittest.main()

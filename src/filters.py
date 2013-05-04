@@ -14,6 +14,9 @@ class OnBranch:
     def __call__(self, changeset):
         return self.branch == changeset.branch()
 
+    def __str__(self):
+        return 'On Branch: ' + self.branch
+
 class AfterDate:
     def __init__(self, date):
         self.date = date

@@ -1,7 +1,4 @@
 Feature: The test metrics should be available for a specific user
-    In order to see test recent testing efforts
-    As a developer
-    I want to see the percentage of my pushes containing tests
 
     Scenario: It should be able to handle no changesets for the user
         Given a repository with changesets
@@ -16,6 +13,7 @@ Feature: The test metrics should be available for a specific user
             | output lines                                 |
             | Filtering by...                              |
             |     Users: A User                            |
+            |     On Branch: default                       |
             |                                              |
             | There are no changesets meeting the criteria |
 
@@ -34,6 +32,7 @@ Feature: The test metrics should be available for a specific user
             | output lines                   |
             | Filtering by...                |
             |     Users: A User              |
+            |     On Branch: default         |
             |                                |
             | Total Commits: 2               |
             | Tested Commits: 1 - 50 percent |

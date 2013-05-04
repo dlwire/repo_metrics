@@ -13,6 +13,7 @@ Feature: The test metrics should be available since a starting date
             | output lines                                 |
             | Filtering by...                              |
             |     After Date: 1980-10-02                   |
+            |     On Branch: default                       |
             |                                              |
             | There are no changesets meeting the criteria |
 
@@ -31,6 +32,7 @@ Feature: The test metrics should be available since a starting date
             | output lines                   |
             | Filtering by...                |
             |     After Date: 1980-10-02     |
+            |     On Branch: default         |
             |                                |
             | Total Commits: 2               |
             | Tested Commits: 1 - 50 percent |

@@ -15,6 +15,7 @@ Feature: The test metrics should be available for commits touching specified fil
             | output lines                   |
             | Filtering by...                |
             |     Extensions: cpp            |
+            |     On Branch: default         |
             |                                |
             | Total Commits: 2               |
             | Tested Commits: 1 - 50 percent |

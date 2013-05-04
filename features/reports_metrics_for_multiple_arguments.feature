@@ -2,7 +2,7 @@ Feature: The test metrics should be available for a combination of arguments
 
     Scenario: It should report the metrics for the user in question after a given date
         Given a repository with changesets
-            | files | user | date |
+            | files     | user         | date       |
             | codefile1 | A User       | 1980-10-02 |
             | codefile2 | Another user | 1980-10-04 |
             | testfile1 | A User       | 1980-10-04 |
@@ -18,6 +18,7 @@ Feature: The test metrics should be available for a combination of arguments
             | Filtering by...                |
             |     After Date: 1980-10-03     |
             |     Users: A User              |
+            |     On Branch: default         |
             |                                |
             | Total Commits: 2               |
             | Tested Commits: 1 - 50 percent |
