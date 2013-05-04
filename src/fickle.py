@@ -1,9 +1,9 @@
 from mercurial import hg, ui
 
-def filter_changesets2(changesets, filters):
+def apply_filters(changesets, filters):
     if len(filters) == 0: 
         return changesets
-    return filter(filters[0], filter_changesets2(changesets, filters[1:]))
+    return filter(filters[0], apply_filters(changesets, filters[1:]))
 
 class Fickle:
     def __init__(self, path):
@@ -22,5 +22,5 @@ class Fickle:
         return (self.repo[revisionNumber] for revisionNumber in range(0, len(self.repo)))
 
     def filter_changesets(self, filters):
-        return filter_changesets2(self.changesets(), filters)
+        return apply_filters(self.changesets(), filters)
 

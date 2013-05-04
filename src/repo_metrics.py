@@ -3,7 +3,7 @@ import sys
 from mercurial import hg, ui
 from filters import IsTdded, OnBranch
 from parse_arguments import parse_arguments
-from fickle import Fickle, filter_changesets2
+from fickle import Fickle
 
 def get_count_and_percentage(base, my_filter):
     base_count = len(base)

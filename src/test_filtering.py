@@ -1,4 +1,4 @@
-from fickle import filter_changesets2
+from fickle import apply_filters
 import unittest
 
 class FilterTest(unittest.TestCase):
@@ -9,7 +9,7 @@ class FilterTest(unittest.TestCase):
                 lambda x: x % 2 == 0 ]
 
     def test_applies_all_filters_to_collection(self):
-        result = filter_changesets2(self.collection, self.filters)
+        result = apply_filters(self.collection, self.filters)
         self.assertEqual(result, [6, 12, 18])
 
 
