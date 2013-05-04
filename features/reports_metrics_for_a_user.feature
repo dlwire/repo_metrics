@@ -10,12 +10,12 @@ Feature: The test metrics should be available for a specific user
             | --users | A User    |
 
         Then I should see the following output
-            | output lines                                 |
-            | Filtering by...                              |
-            |     Users: A User                            |
-            |     On Branch: default                       |
-            |                                              |
-            | There are no changesets meeting the criteria |
+            | output lines           |
+            | Filtering by...        |
+            |     Users: A User      |
+            |     On Branch: default |
+            |                        |
+            | Total Commits: 0       |
 
     Scenario: It should report the metrics for the user in question
         Given a repository with changesets

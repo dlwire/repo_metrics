@@ -10,12 +10,12 @@ Feature: The test metrics should be available for multiple users
             | --users | A User, B User |
             
         Then I should see the following output
-            | output lines                                 |
-            | Filtering by...                              |
-            |     Users: A User, B User                    |
-            |     On Branch: default                       |
-            |                                              |
-            | There are no changesets meeting the criteria |
+            | output lines              |
+            | Filtering by...           |
+            |     Users: A User, B User |
+            |     On Branch: default    |
+            |                           |
+            | Total Commits: 0          |
 
     Scenario: It should report the metrics for the users in question
         Given a repository with changesets

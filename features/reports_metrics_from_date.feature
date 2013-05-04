@@ -10,12 +10,12 @@ Feature: The test metrics should be available since a starting date
             | --afterDate | 1980-10-02 |
 
         Then I should see the following output
-            | output lines                                 |
-            | Filtering by...                              |
-            |     After Date: 1980-10-02                   |
-            |     On Branch: default                       |
-            |                                              |
-            | There are no changesets meeting the criteria |
+            | output lines               |
+            | Filtering by...            |
+            |     After Date: 1980-10-02 |
+            |     On Branch: default     |
+            |                            |
+            | Total Commits: 0           |
 
     Scenario: It should report the metrics since the start date
         Given a repository with changesets

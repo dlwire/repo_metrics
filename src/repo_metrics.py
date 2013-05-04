@@ -35,10 +35,6 @@ def print_metrics(repo, base_filters, metrics_filters):
 
     base = repo.filter_changesets(base_filters)
 
-    if len(base) == 0:
-        print('There are no changesets meeting the criteria')
-        return
-
     print('Total Commits: %d' % len(base))
 
     for f in metrics_filters:
