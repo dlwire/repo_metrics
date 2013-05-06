@@ -21,8 +21,11 @@ class TestIsTdded(unittest.TestCase):
     def test_code_and_test_testedFilter(self):
         self.assertTrue(self.testedFilter(Changeset(filepaths=['filecode', 'testcode'])))
 
-    def test_print_result(self):
-        self.assertEquals('Tested Commits: %d - %d percent', self.testedFilter.print_result())
+    def test_label(self):
+        self.assertEqual('Tested Commits', self.testedFilter.label())
+
+    def test_result_format(self):
+        self.assertEquals('Tested Commits: %d - %d percent', self.testedFilter.result_format())
 
     def test_result_example(self):
-        self.assertEquals('Tested Commits: 70 - 75 percent', self.testedFilter.print_result() % (70, 75))
+        self.assertEquals('Tested Commits: 70 - 75 percent', self.testedFilter.result_format() % (70, 75))

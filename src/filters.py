@@ -7,8 +7,11 @@ class IsTdded:
     def __call__(self, changeset):
         return any(['test' in filename.lower() for filename in changeset.files()])
 
-    def print_result(self):
+    def result_format(self):
         return 'Tested Commits: %d - %d percent'
+
+    def label(self):
+        return 'Tested Commits'
 
 class OnBranch:
     def __init__(self, branch):
