@@ -1,6 +1,11 @@
-from datetime import datetime
-from filters import *
 import argparse
+import os
+import sys
+from datetime import datetime
+from default_output import DefaultOutput
+from fickle import Fickle
+from filters import *
+from repo_metrics import print_metrics
 
 def parse_arguments(arguments):
     p = argparse.ArgumentParser()
@@ -32,3 +37,12 @@ def parse_arguments(arguments):
 def parse_date(date):
     year, month, day = date.split('-')
     return datetime(int(year), int(month), int(day))
+
+def generate_and_display_metrics():
+    repo = Fickle(os.getcwd())
+    base_filters = parse_arguments(sys.argv)
+    metrics_filters = [IsTdded()]
+    print_metrics(repo, base_filters, metrics_filters, DefaultOutput())
+
+if __name__ == '__main__':
+    generate_and_display_metrics() 

@@ -1,7 +1,7 @@
 import unittest
 from test_support import Changeset
 from datetime import datetime
-from parse_arguments import parse_arguments
+from run_metrics import parse_arguments
 
 class TestParseArguments(unittest.TestCase):
     def setUp(self):

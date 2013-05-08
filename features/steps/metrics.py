@@ -5,11 +5,11 @@ from subprocess import check_output
 
 @step(u'I run the metrics tool$')
 def i_run_the_metrics_tool(step):
-    world.output = check_output(['python', '../src/repo_metrics.py'], cwd=world.REPO_DIR).strip()
+    world.output = check_output(['python', '../src/run_metrics.py'], cwd=world.REPO_DIR).strip()
 
 @step(u'I run the metrics tool with arguments$')
 def i_run_the_metrics_tool_with_arguments(step):
-    command = ['python', '../src/repo_metrics.py']
+    command = ['python', '../src/run_metrics.py']
     for arg_dict in step.hashes:
         command += [arg_dict['type']] 
         command += [arg.strip() for arg in arg_dict['arguments'].split(',')]

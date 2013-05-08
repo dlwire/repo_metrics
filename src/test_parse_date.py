@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime
-from parse_arguments import parse_date
+from run_metrics import parse_date
 
 class TestParseDate(unittest.TestCase):
     def test_returns_datetime_matching_args(self):
