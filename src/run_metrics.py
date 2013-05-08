@@ -9,7 +9,7 @@ from repo_metrics import print_metrics
 
 def parse_arguments(arguments):
     p = argparse.ArgumentParser()
-    p.add_argument('--afterDate', type=parse_date, nargs='?')
+    p.add_argument('--afterDate', type=datetime_from_string, nargs='?')
     p.add_argument('--users', type=lambda x: x, nargs='*')
     p.add_argument('--extensions', type=lambda x: x, nargs='*')
     p.add_argument('--branch', type=lambda x: x, default='default', nargs='?')
@@ -34,7 +34,7 @@ def parse_arguments(arguments):
 
     return filters
 
-def parse_date(date):
+def datetime_from_string(date):
     year, month, day = date.split('-')
     return datetime(int(year), int(month), int(day))
 
