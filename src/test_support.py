@@ -39,3 +39,11 @@ class Repository:
 
     def get_repo(self):
         return self.repo
+
+class ParsedArgumentsMock:
+    def __init__(self, afterDate=None, users=None, extensions=None, branch='default'):
+        self.afterDate = afterDate
+        self.users = users
+        self.extensions = extensions
+        self.branch = branch
+

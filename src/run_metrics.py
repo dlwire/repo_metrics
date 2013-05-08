@@ -7,6 +7,25 @@ from fickle import Fickle
 from filters import *
 from repo_metrics import print_metrics
 
+def get_filters_from_args(parsed_arguments):
+    filters = []
+
+    if parsed_arguments.afterDate:
+        after_date = AfterDate(parsed_arguments.afterDate)
+        filters.append(after_date)
+
+    if parsed_arguments.users:
+        by_users = ByUsers(parsed_arguments.users)
+        filters.append(by_users)
+
+    if parsed_arguments.extensions:
+        by_extensions = ByExtensions(parsed_arguments.extensions)
+        filters.append(by_extensions)
+
+    filters.append(OnBranch(parsed_arguments.branch))
+
+    return filters
+
 def parse_arguments(arguments):
     p = argparse.ArgumentParser()
     p.add_argument('--afterDate', type=datetime_from_string, nargs='?')
@@ -16,23 +35,7 @@ def parse_arguments(arguments):
     p.add_argument('args', nargs=argparse.REMAINDER)
     args = p.parse_args(arguments[1:])
 
-    filters = []
-
-    if args.afterDate:
-        after_date = AfterDate(args.afterDate)
-        filters.append(after_date)
-
-    if args.users:
-        by_users = ByUsers(args.users)
-        filters.append(by_users)
-
-    if args.extensions:
-        by_extensions = ByExtensions(args.extensions)
-        filters.append(by_extensions)
-
-    filters.append(OnBranch(args.branch))
-
-    return filters
+    return args
 
 def datetime_from_string(date):
     year, month, day = date.split('-')
@@ -40,7 +43,8 @@ def datetime_from_string(date):
 
 def generate_and_display_metrics():
     repo = Fickle(os.getcwd())
-    base_filters = parse_arguments(sys.argv)
+    args = parse_arguments(sys.argv)
+    base_filters = get_filters_from_args(args)
     metrics_filters = [IsTdded()]
     print_metrics(repo, base_filters, metrics_filters, DefaultOutput())
 
