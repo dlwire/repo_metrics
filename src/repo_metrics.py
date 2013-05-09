@@ -1,18 +1,20 @@
 import os
 import sys
+from math import floor
 from mercurial import hg, ui
+from results import Results
 
-def get_count_and_percentage(base, my_filter):
-    base_count = len(base)
-    if base_count == 0:
-        return 0, 0
-
-    filtered_count = len(filter(my_filter, base))
-    return filtered_count, float(filtered_count) / base_count * 100
+def convert_to_percent(numerator, denominator):
+    return floor(float(numerator) / denominator * 100)
 
 def run_metric(base, metric_filter):
-    total, percent = get_count_and_percentage(base, metric_filter)
-    return metric_filter.label(), total, percent 
+    total = len(base)
+    if total == 0:
+        return Results(0, '', 0, 0)
+
+    metric = len(filter(metric_filter, base))
+    
+    return Results(total, metric_filter.label(), metric, convert_to_percent(metric, total))
 
 def print_metrics(repo, base_filters, metrics_filters, outputer):
     if not repo.is_valid():
@@ -24,5 +26,5 @@ def print_metrics(repo, base_filters, metrics_filters, outputer):
         return
 
     base = repo.filter_changesets(base_filters)
-    label, total, percent = run_metric(base, metrics_filters[0])
-    outputer.output(base_filters, len(base), label, total, percent) 
+    result = run_metric(base, metrics_filters[0])
+    outputer.output(base_filters, result) 
