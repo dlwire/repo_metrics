@@ -2,6 +2,7 @@ import unittest
 from test_support import Changeset
 from group_by_month import group_by_month
 
+SEP_1980_EPOCH = 336718800
 OCT_1980_EPOCH = 339310800
 NOV_1980_EPOCH = 341989200
 
@@ -48,6 +49,24 @@ class TestGroupByMonth(unittest.TestCase):
         self.assertEquals(2, len(changes))
         self.assertEquals(1, len(changes[0]))
         self.assertEquals(1, len(changes[1]))
+
+    def test_changesets_must_be_sorted(self):
+        changesets = [Changeset(epochTime=OCT_1980_EPOCH), Changeset(epochTime=SEP_1980_EPOCH), Changeset(epochTime=OCT_1980_EPOCH)]
+        
+        monthly = group_by_month(changesets)
+        months = []
+        changes = []
+        for k, g in monthly:
+            months.append(k)
+            changes.append(list(g))
+
+        self.assertEquals(2, len(months))
+        self.assertEquals('1980-09', months[0])
+        self.assertEquals('1980-10', months[1])
+        
+        self.assertEquals(2, len(changes))
+        self.assertEquals(1, len(changes[0]))
+        self.assertEquals(2, len(changes[1]))
 
 
 if __name__ == '__main__':

@@ -6,4 +6,5 @@ def monthly(changeset):
     return '%4d-%02d' % (date.year, date.month)
 
 def group_by_month(changesets):
-    return groupby(changesets, monthly)
+    sort = sorted(changesets, key=monthly)
+    return groupby(sort, monthly)
